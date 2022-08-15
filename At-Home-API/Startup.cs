@@ -1,5 +1,5 @@
-namespace API_AUTORES
-{
+namespace At_Home_API
+{ 
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -10,8 +10,7 @@ namespace API_AUTORES
         public IConfiguration Configuration { get; }
         public void ConfigureSevices(IServiceCollection services)
         {
-			services.AddDbContext<AplicationDbContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+			
             services.AddControllers();
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
