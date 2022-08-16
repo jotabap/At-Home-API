@@ -2,6 +2,9 @@ namespace At_Home_API
 { 
     public class Startup
     {
+
+        readonly string CorsConfiguration = "_corsConfiguration";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -14,6 +17,14 @@ namespace At_Home_API
             services.AddControllers();
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
+            services.AddCors (Options =>
+            {
+                Options.AddPolicy(name: CorsConfiguration,
+                    builder =>
+                    {
+                        builder.WithOrigins("*");
+                    });
+            });
         }
         public void Configure (IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -27,6 +38,7 @@ namespace At_Home_API
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseCors(CorsConfiguration);
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

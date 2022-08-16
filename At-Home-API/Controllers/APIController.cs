@@ -21,8 +21,7 @@ namespace At_Home_API.Controllers
 
         [HttpGet]
         public ActionResult<Api1Model> Get()
-        {
-            int total = 53;
+        {            
             return model;
         }
         
